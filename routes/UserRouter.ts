@@ -4,7 +4,6 @@ import { Middleware } from "../config/server/Middleware";
 
 const router = Router();
 
-//Definicion de rutas, tipo de peticion, necesidad de autenticacion asi como origen y metodo
 router.post('/createUser',Middleware(1), UserController.createUser);
 router.get('/viewUser',Middleware(1), UserController.viewUser);
 router.get('/viewUsers',Middleware(1), UserController.viewUsers);

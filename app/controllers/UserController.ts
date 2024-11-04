@@ -43,7 +43,6 @@ class UserController {
     if (Utils.hasEmptyParams([idusers,name,password,phone,rol]))
         throw new CustomExceptions("007");
   
-      // Se manda a llamar el modelo y se envian las variables del body como lo pide el modelo
       const result = await UserModel.updateUser(
         idusers,
         name,
@@ -52,7 +51,6 @@ class UserController {
         rol
       );
   
-      // Regresa en formato json el resultado del modelo
       res.json(result);
   }
   static async deleteUser(req:any, res:any){
@@ -64,12 +62,10 @@ class UserController {
     if (Utils.hasEmptyParams([idusers]))
         throw new CustomExceptions("007");
   
-      // Se manda a llamar el modelo y se envian las variables del body como lo pide el modelo
       const result = await UserModel.deleteUser(
         idusers
       );
   
-      // Regresa en formato json el resultado del modelo
       res.json(result);
   }
 }

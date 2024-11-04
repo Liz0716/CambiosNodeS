@@ -8,7 +8,6 @@ class OrderController {
       req.body;
     if (Utils.hasEmptyParams([total, client, users_idusers, order_details])) throw new CustomExceptions("007");
 
-    // Se manda a llamar el modelo y se envian las variables del body como lo pide el modelo
     const result = await OrderModel.createOrder(
       total,
       origin,
@@ -18,7 +17,6 @@ class OrderController {
       order_details
     );
 
-    // Regresa en formato json el resultado del modelo
     res.json(result);
   }
   static async viewOrder(req: any, res: any) {
@@ -44,14 +42,14 @@ class OrderController {
     if (Utils.hasEmptyParams([idorder,status, users_idusers]))
         throw new CustomExceptions("007");
   
-      // Se manda a llamar el modelo y se envian las variables del body como lo pide el modelo
+
       const result = await OrderModel.updateStatus(
         idorder,
         status,
         users_idusers
       );
   
-      // Regresa en formato json el resultado del modelo
+
       res.json(result);
   }
 static async lastOrder(req:any,res:any){

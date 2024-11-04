@@ -9,14 +9,10 @@ class MenuService{
             query: "SELECT p.idproducts, p.name, p.price, p.description, p.category_idcategory, c.name as name_category FROM products as p JOIN category c ON c.idcategory = p.category_idcategory WHERE p.active = 1 ORDER BY p.category_idcategory, p.name",
             params: []
         });
-         // Checa que no haya error y si si hay, manda el error
          if (res.error) return res;
 
-         // Guardamos lo que viene en la key msg en una variable
          const msj = res.msg;
  
-         // Si hay error puede que nos devuelva solamente un string, pero nosotros necesitamos un objeto
-         // Entonces evaluamos qu no sea un string
          if (typeof msj === 'string') {
              throw new CustomExceptions('004');
          }

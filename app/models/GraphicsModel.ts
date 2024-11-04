@@ -12,10 +12,8 @@ class GraphicsModel{
         let count = 0;
         let labels = ["","",""];
         let data = ["","",""];
-        // Checa que no haya error y si si hay, manda el error
         if (res.error) return res;
 
-        // Guardamos lo que viene en la key msg en una variable
         const msj = res.msg;
         if (typeof msj === 'string') {
             throw new CustomExceptions('004');
@@ -44,10 +42,8 @@ class GraphicsModel{
         let count = 0;
         let labels = ["","",""];
         let data = ["","",""];
-        // Checa que no haya error y si si hay, manda el error
         if (res.error) return res;
 
-        // Guardamos lo que viene en la key msg en una variable
         const msj = res.msg;
         if (typeof msj === 'string') {
             throw new CustomExceptions('004');
@@ -76,10 +72,8 @@ class GraphicsModel{
         let labelsAux = [];
         let data = [];
         const res = await GraphicsService.sales();
-        // Checa que no haya error y si si hay, manda el error
         if (res.error) return res;
 
-        // Guardamos lo que viene en la key msg en una variable
         const msj = res.msg;
         if (typeof msj === 'string') {
             throw new CustomExceptions('004');

@@ -4,7 +4,6 @@ import { Middleware } from "../config/server/Middleware";
 
 const router = Router();
 
-//Definicion de rutas, tipo de peticion, necesidad de autenticacion asi como origen y metodo
 router.get('/totalSales',Middleware(1), GraphicsController.totalSales);
 router.get('/bestSeller',Middleware(1), GraphicsController.bestSeller);
 router.get('/bestClient',Middleware(1), GraphicsController.bestClient);

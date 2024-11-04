@@ -3,7 +3,6 @@ import { Utils } from "../../config/tools/Utils";
 import { CustomExceptions } from "../../config/tools/CustomExceptions";
 
 class AuthController {
-  // Tipo de peticion POST
   static async signIn(req: any, res: any) {
     try {
       // NOTA: las variables deben de llamarse igual que en las keys del json

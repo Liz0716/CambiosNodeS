@@ -19,10 +19,8 @@ class OrderModel {
       users_idusers,
       order_details
     );
-    // Checa que no haya error y si si hay, manda el error
     if (res.error) return res;
 
-    // Guardamos lo que viene en la key msg en una variable
     const msj = res.msg;
     return {
       error: false,

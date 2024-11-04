@@ -56,34 +56,26 @@ class OrderService {
         );
       }
     );
-    //console.log(queries);
 
     const res = await DatabaseMethods.save_transaction(queries);
-    // Checa que no haya error y si si hay, manda el error
     if (res.error) return res;
 
     return { error: false, msg: idOrder };
   }
   static async viewOrder(idorder: string) {
-    //console.log(idorder);
 
     const res = await DatabaseMethods.query({
       query:
         "SELECT o.idorder, o.client, o.total, o.status, o.comments, MONTH(o.date) mes, od.idorderdetail, od.order_type, od.comments as comments_product, p.name product, c.name category FROM `order` AS O JOIN order_details od ON od.order_idorder = o.idorder JOIN products p ON p.idproducts=od.products_idproducts JOIN category c ON c.idcategory =p.category_idcategory WHERE idorder=?",
       params: [idorder],
     });
-    // Checa que no haya error y si si hay, manda el error
     if (res.error) return res;
 
-    // Guardamos lo que viene en la key msg en una variable
     const msj = res.msg;
 
-    // Si hay error puede que nos devuelva solamente un string, pero nosotros necesitamos un objeto
-    // Entonces evaluamos qu no sea un string
     if (typeof msj === "string") {
       throw new CustomExceptions("004");
     }
-    // Evaluamos si no viene null
     if (!msj) throw new CustomExceptions("004");
     for (const [key, value] of Object.entries(msj)) {
       const res2 = await DatabaseMethods.query({
