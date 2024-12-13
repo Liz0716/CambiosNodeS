@@ -9,6 +9,8 @@ router.get('/viewOrder',Middleware(1), OrderController.viewOrder);
 router.get('/viewOrders',Middleware(1), OrderController.viewOrders);
 router.put('/updateStatus',Middleware(1), OrderController.updateStatus);
 router.get('/lastOrder',Middleware(1), OrderController.lastOrder);
+router.get('/viewOrdersId',Middleware(1), OrderController.viewOrdersId);
+
 
 
 export default router;

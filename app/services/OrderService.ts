@@ -56,7 +56,6 @@ class OrderService {
         );
       }
     );
-
     const res = await DatabaseMethods.save_transaction(queries);
     if (res.error) return res;
 
@@ -66,7 +65,7 @@ class OrderService {
 
     const res = await DatabaseMethods.query({
       query:
-        "SELECT o.idorder, o.client, o.total, o.status, o.comments, MONTH(o.date) mes, od.idorderdetail, od.order_type, od.comments as comments_product, p.name product, c.name category FROM `order` AS O JOIN order_details od ON od.order_idorder = o.idorder JOIN products p ON p.idproducts=od.products_idproducts JOIN category c ON c.idcategory =p.category_idcategory WHERE idorder=?",
+        "SELECT o.idorder, o.client, o.total, o.status, o.comments, MONTH(o.date) mes, od.idorderdetail, od.order_type, od.comments as comments_product, p.name product, c.name category FROM `order` AS o JOIN order_details od ON od.order_idorder = o.idorder JOIN products p ON p.idproducts=od.products_idproducts JOIN category c ON c.idcategory =p.category_idcategory WHERE idorder=?",
       params: [idorder],
     });
     if (res.error) return res;
@@ -91,8 +90,17 @@ class OrderService {
   static async viewOrders() {
     const res = await DatabaseMethods.query({
       query:
-        "SELECT o.idorder, o.client, o.total, o.status, o.comments, MONTH(o.date) mes FROM `order` AS O WHERE active='1' ORDER BY o.date ASC",
+        "SELECT o.idorder, o.client, o.total, o.status, o.comments, MONTH(o.date) mes FROM `order` AS o WHERE active='1' ORDER BY o.date ASC",
       params: [],
+    });
+    return res;
+  }
+
+  static async viewOrdersId(iduser: string) {
+    const res = await DatabaseMethods.query({
+      query:
+        "SELECT o.idorder, o.client, o.total, o.status, o.comments, MONTH(o.date) mes FROM `order` AS o WHERE active='1' AND users_idusers = ? ORDER BY o.date ASC",
+      params: [iduser],
     });
     return res;
   }

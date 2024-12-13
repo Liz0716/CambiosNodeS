@@ -5,14 +5,16 @@
 export const SERVER_PORT: number = Number(process.env.PORT) || 3000;
 
 // Define el nombre del host para la conexión a la base de datos MySQL
-export const HOST_MYSQL: string = "";
+export const HOST_MYSQL: string = "127.0.0.1";
 
 // Define el nombre de usuario para la conexión a la base de datos MySQL
-export const USER_MYSQL: string = "";
+export const USER_MYSQL: string = "root";
 
 // Define la contraseña para el usuario de la base de datos MySQL
-export const PASSWORD_MYSQL: string = "";
+export const PASSWORD_MYSQL: string = "12345";
 
 // Define el nombre de la base de datos a la que se conectará la aplicación MySQL
-export const DATABASE_MYSQL: string = "";
+export const DATABASE_MYSQL: string = "pedidosDB";
+
+export const PORT_MYSQL: number = 3307; 
 

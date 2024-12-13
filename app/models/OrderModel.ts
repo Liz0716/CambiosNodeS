@@ -19,6 +19,7 @@ class OrderModel {
       users_idusers,
       order_details
     );
+
     if (res.error) return res;
 
     const msj = res.msg;
@@ -38,6 +39,10 @@ class OrderModel {
   }
   static async viewOrders(){
     return await OrderService.viewOrders();
+  
+  }
+  static async viewOrdersId(iduser: string){
+    return await OrderService.viewOrdersId(iduser);
   }
   static async updateStatus(idorder: string,status: number,users_idusers:string){
     return await OrderService.updateStatus(idorder,status,users_idusers);

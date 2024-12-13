@@ -6,6 +6,8 @@ class OrderController {
   static async createOrder(req: any, res: any) {
     const { total, origin, comments, client, users_idusers, order_details } =
       req.body;
+      // res.json(req.body);
+      
     if (Utils.hasEmptyParams([total, client, users_idusers, order_details])) throw new CustomExceptions("007");
 
     const result = await OrderModel.createOrder(
@@ -28,9 +30,21 @@ class OrderController {
     if (Utils.hasEmptyParams([idorder])) throw new CustomExceptions('007');
     const result = await OrderModel.viewOrder(idorder);
     res.json(result);
+    console.log(result);
+    
   }
   static async viewOrders(req: any, res:any){
     const result =  await OrderModel.viewOrders();
+    res.json(result);
+  }
+
+  static async viewOrdersId(req: any, res:any){
+    const keyParams = req.query.params;
+    let params;
+    params = JSON.parse(keyParams);
+    const {idorder,status,users_idusers} = params;
+
+    const result =  await OrderModel.viewOrdersId(users_idusers);
     res.json(result);
   }
   static async updateStatus(req:any, res:any){
